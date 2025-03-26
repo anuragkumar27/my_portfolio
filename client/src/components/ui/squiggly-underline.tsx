@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from "react";
 
 interface SquigglyUnderlineProps {
   children: ReactNode;
@@ -8,15 +8,54 @@ interface SquigglyUnderlineProps {
 export default function SquigglyUnderline({ children, color = "#FF6B6B" }: SquigglyUnderlineProps) {
   return (
     <span className="relative inline-block">
-      {children}
-      <span
-        className="absolute left-0 bottom-[-10px] w-full h-3"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='10' viewBox='0 0 100 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 5 Q 10 2.5, 20 5 T 40 5 T 60 5 T 80 5 T 100 5' stroke='${encodeURIComponent(color)}' fill='none' stroke-width='3'/%3E%3C/svg%3E")`,
-          backgroundSize: "100px 10px",
-          backgroundRepeat: "repeat-x"
+      {/* The text content */}
+      <span className="relative z-10">{children}</span>
+      
+      {/* The squiggly underline */}
+      <svg
+        width="100%"
+        height="10"
+        className="absolute bottom-0 left-0 animate-wiggle"
+        style={{ 
+          transformOrigin: 'center',
+          animationDuration: '7s',
+          zIndex: 1
         }}
-      ></span>
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0,3 
+             Q5,6 10,3 
+             T20,3 
+             T30,3 
+             T40,3 
+             T50,3 
+             T60,3 
+             T70,3 
+             T80,3 
+             T90,3 
+             T100,3 
+             T110,3 
+             T120,3 
+             T130,3 
+             T140,3 
+             T150,3
+             T160,3
+             T170,3
+             T180,3
+             T190,3
+             T200,3
+             T210,3
+             T220,3
+             T230,3
+             T240,3
+             T250,3"
+          fill="none"
+          stroke={color}
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
     </span>
   );
 }
